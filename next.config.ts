@@ -10,6 +10,9 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: turbopackRoot,
   },
+  images: {
+    unoptimized: true,
+  },
 }
 
 export default nextConfig
