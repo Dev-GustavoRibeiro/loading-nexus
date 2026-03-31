@@ -57,22 +57,17 @@ function ZedChatPreview() {
     <div className="relative w-full max-w-full rounded-2xl bg-[#080f1e] border border-slate-800/70 overflow-hidden p-3 sm:p-4">
       <BorderBeam size={160} duration={6} colorFrom="#1e3a5f" colorTo="#d4af37" />
 
-      <div className="relative z-10 mb-2 shrink-0">
-        <p className="text-[11px] font-semibold uppercase tracking-wider text-amber-500/90">
-          Interface no app
-        </p>
-        <p className="text-xs text-slate-600 mt-0.5">
-          ZED AI — captura de tela, diagnóstico e ações com confirmação.
-        </p>
-      </div>
+      <p className="sr-only">
+        Pré-visualização da interface ZED AI no app: captura de tela, diagnóstico e ações com
+        confirmação.
+      </p>
 
-      {/* Altura natural da imagem — sem min-height nem flex-1 */}
       <div className="relative z-10 w-full overflow-hidden rounded-xl border border-slate-800/60 bg-[#0a0f18] leading-none">
         <Image
-          src="/chat-zed.png"
+          src="/chat.png"
           alt="Interface do ZED AI no Loading Nexus: chat com o agente, ações rápidas e campo de mensagem."
-          width={1024}
-          height={1024}
+          width={526}
+          height={502}
           className="block h-auto w-full align-top"
           sizes="(max-width: 1024px) 100vw, 50vw"
           priority
