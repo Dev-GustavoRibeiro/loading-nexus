@@ -2,7 +2,7 @@
 
 import { useRef } from "react"
 import { motion, useScroll, useTransform } from "motion/react"
-import { Zap, Shield, Monitor, TrendingUp } from "lucide-react"
+import { Zap, Shield, Monitor, Brain } from "lucide-react"
 import Image from "next/image"
 import { WordRotate } from "@/components/ui/word-rotate"
 import { BorderBeam } from "@/components/ui/border-beam"
@@ -10,7 +10,7 @@ import { DarkVeilBackground } from "@/components/DarkVeilBackground"
 import { useAuthModal } from "@/components/AuthModalProvider"
 
 const STATS = [
-  { value: "+40%", label: "Ganho típico*", icon: TrendingUp },
+  { value: "+40%", label: "Ganho típico*", icon: Brain },
   { value: "<1ms", label: "Resposta", icon: Zap },
   { value: "500+", label: "Utilizadores", icon: Monitor },
   { value: "24/7", label: "Suporte", icon: Shield },
@@ -31,16 +31,13 @@ export function HeroSection() {
     offset: ["start start", "end start"],
   })
 
-  /* Parallax suave para o dashboard de fundo */
   const dashY = useTransform(scrollYProgress, [0, 1], [0, 80])
   const dashOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0])
 
   return (
     <section ref={sectionRef} className="relative overflow-hidden bg-[#050a14]">
-      {/* Dark Veil WebGL background */}
       <DarkVeilBackground className="z-0 opacity-[0.88]" />
 
-      {/* Atmospheric gradient overlay */}
       <div
         className="absolute inset-0 z-[1] pointer-events-none"
         style={{
@@ -51,7 +48,6 @@ export function HeroSection() {
         }}
       />
 
-      {/* Subtle gold grid */}
       <div className="absolute inset-0 z-[1] pointer-events-none opacity-[0.07]">
         <div
           className="absolute inset-0"
@@ -59,19 +55,16 @@ export function HeroSection() {
             backgroundImage:
               "linear-gradient(rgba(212,175,55,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.15) 1px, transparent 1px)",
             backgroundSize: "64px 64px",
-            /* Evita linha horizontal exactamente em y=0 (visível através da navbar transparente). */
             backgroundPosition: "0 4px",
             maskImage: "radial-gradient(ellipse 80% 70% at 50% 30%, black 0%, transparent 100%)",
           }}
         />
       </div>
 
-      {/* ── Dashboard como imagem de fundo atmosférica ───────────────── */}
       <motion.div
         className="absolute inset-0 z-[2] flex items-end justify-center pointer-events-none"
         style={{ y: dashY, opacity: dashOpacity }}
       >
-        {/* Container que posiciona a imagem na metade inferior */}
         <div className="w-full max-w-5xl mx-auto px-4 pb-0 relative">
           <Image
             src="/dashboard-preview.PNG"
@@ -90,20 +83,17 @@ export function HeroSection() {
             }}
           />
         </div>
-
-        {/* Fade final para não cortar abruptamente embaixo */}
         <div
           className="absolute inset-x-0 bottom-0 h-40 pointer-events-none"
           style={{ background: "linear-gradient(to top, #050a14 0%, transparent 100%)" }}
         />
       </motion.div>
 
-      {/* ── Hero copy ──────────────────────────────────────────────────── */}
       <div className="relative z-10">
         <div className="min-h-[min(86vh,800px)] flex flex-col items-center justify-center pt-24 pb-16 px-4 sm:px-6">
           <div className="max-w-5xl mx-auto text-center w-full">
 
-            {/* Badge */}
+            {/* Badge — reposicionado para IA */}
             <motion.div
               initial={{ opacity: 0, y: -12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -115,11 +105,11 @@ export function HeroSection() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500" />
               </span>
               <span className="text-xs font-semibold text-amber-300/90 tracking-wide uppercase">
-                Windows mais rápido — jogos, trabalho, criação
+                Copiloto de performance com IA para Windows
               </span>
             </motion.div>
 
-            {/* Headline */}
+            {/* Headline — IA como âncora */}
             <motion.div
               initial={{ opacity: 0, y: 32 }}
               animate={{ opacity: 1, y: 0 }}
@@ -128,31 +118,31 @@ export function HeroSection() {
             >
               <h1 className="font-black leading-[0.92] tracking-tight">
                 <span className="block text-4xl sm:text-6xl lg:text-7xl text-slate-200 mb-2">
-                  O DESEMPENHO QUE
+                  SEU PC MAIS RÁPIDO,
                 </span>
                 <span className="block text-5xl sm:text-7xl lg:text-[5.5rem] bg-gradient-to-br from-amber-200 via-amber-400 to-amber-600 bg-clip-text text-transparent">
-                  O SEU PC MERECE
+                  COM IA DO SEU LADO
                 </span>
               </h1>
             </motion.div>
 
-            {/* Subline */}
+            {/* Subline com WordRotate */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="flex flex-wrap items-center justify-center gap-2 text-lg sm:text-xl text-slate-500 mb-5"
             >
-              <span>Diagnóstico</span>
+              <span>Diagnóstico inteligente</span>
               <span className="text-slate-700">·</span>
               <WordRotate
                 className="font-bold text-amber-400"
                 words={[
-                  "Otimização Automática",
+                  "Agente de IA integrado",
+                  "Otimização automática",
                   "Mais FPS nos jogos",
                   "Menos travamentos",
                   "Multitarefa fluida",
-                  "Tweaks cirúrgicos",
                 ]}
                 duration={2800}
               />
@@ -166,9 +156,9 @@ export function HeroSection() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="max-w-xl mx-auto text-base text-slate-500 mb-10 leading-relaxed"
             >
-              O <span className="text-slate-200 font-semibold">Loading Nexus</span> analisa,
-              limpa e ajusta o seu Windows em tempo real — para jogos exigentes, trabalho pesado,
-              streaming ou criação — com painel claro e sem complicação.
+              O <span className="text-slate-200 font-semibold">Loading Nexus</span> combina diagnóstico inteligente,
+              otimização em tempo real e um agente de IA que identifica gargalos, explica problemas
+              e ajuda você a agir com confiança.
             </motion.p>
 
             {/* CTAs */}
@@ -183,17 +173,15 @@ export function HeroSection() {
                 className="group relative px-8 py-4 rounded-xl font-bold text-base text-slate-950 overflow-hidden min-w-[220px] shadow-[0_0_32px_rgba(212,175,55,0.3)]"
                 style={{ background: "linear-gradient(135deg, #f0c040, #d4af37, #b8952a)" }}
               >
-                <span className="relative z-10">Começar agora — a partir de R$27,90/mês</span>
+                <span className="relative z-10">Testar agora — a partir de R$27,90/mês</span>
                 <span className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-all duration-300" />
               </button>
               <button
-                onClick={() => document.querySelector("#features")?.scrollIntoView({ behavior: "smooth" })}
-                className="flex items-center gap-2 px-6 py-4 rounded-xl font-semibold text-sm text-slate-400 border border-slate-800/80 hover:border-slate-700 hover:text-slate-200 bg-slate-950/40 backdrop-blur-sm transition-all duration-200"
+                onClick={() => document.querySelector("#agent")?.scrollIntoView({ behavior: "smooth" })}
+                className="flex items-center gap-2 px-6 py-4 rounded-xl font-semibold text-sm text-slate-400 border border-slate-800/80 hover:border-amber-600/40 hover:text-amber-300 bg-slate-950/40 backdrop-blur-sm transition-all duration-200"
               >
-                Ver recursos
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
+                <Brain className="w-4 h-4" />
+                Ver a IA em ação
               </button>
             </motion.div>
 

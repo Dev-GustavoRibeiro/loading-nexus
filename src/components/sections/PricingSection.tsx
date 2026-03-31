@@ -16,7 +16,7 @@ function isStripeLinkReady(url: string): boolean {
 const plans = [
   {
     id: "monthly",
-    name: "Plano Mensal",
+    name: "Nexus Start",
     badge: null,
     Icon: Zap,
     price: 27.9,
@@ -24,19 +24,20 @@ const plans = [
     billing: "Cobrança mensal — Loading Nexus",
     savings: null,
     features: [
-      "Dashboard completo",
-      "Otimização em tempo real (jogos e cargas pesadas)",
+      "Agente de IA ZED integrado",
+      "Dashboard completo de métricas",
+      "Otimização em tempo real",
       "Menos latência e micro-travamentos",
       "1 máquina ativa por vez",
       "Suporte",
     ],
-    cta: "Assinar mensal",
+    cta: "Começar agora",
     highlighted: false,
     stripeKey: "monthly" as const,
   },
   {
     id: "semiannual",
-    name: "Plano Semestral",
+    name: "Nexus Plus",
     badge: "ECONOMIA",
     Icon: CalendarRange,
     price: 137.4,
@@ -44,7 +45,9 @@ const plans = [
     billing: "R$ 137,40 a cada 6 meses",
     savings: null,
     features: [
-      "Tudo do plano mensal",
+      "Tudo do Nexus Start",
+      "Agente ZED com diagnóstico avançado",
+      "Recomendações por perfil de uso",
       "Menor custo que 6x mensal",
       "Renovação automática semestral",
     ],
@@ -54,7 +57,7 @@ const plans = [
   },
   {
     id: "annual",
-    name: "Plano Anual",
+    name: "Nexus Pro",
     badge: "MELHOR CUSTO",
     Icon: Sparkles,
     price: 226.8,
@@ -62,8 +65,10 @@ const plans = [
     billing: "R$ 226,80 por ano — 1 dia de teste no primeiro ciclo",
     savings: "Trial 1 dia",
     features: [
-      "Melhor preço por mês",
-      "Tudo incluído",
+      "Agente ZED completo — diagnóstico + ação",
+      "Motor de performance completo",
+      "Dashboard com histórico e antes/depois",
+      "Recomendações inteligentes por sessão",
       "Suporte prioritário",
       "1 dia de teste ao assinar",
     ],
@@ -102,13 +107,14 @@ export function PricingSection() {
               Planos e Preços
             </div>
             <h2 className="text-3xl sm:text-5xl font-black text-slate-100 mb-4">
-              Escolha seu{" "}
+              Inclui{" "}
               <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-amber-200 bg-clip-text text-transparent">
-                plano
-              </span>
+                agente de IA
+              </span>{" "}
+              em todos os planos
             </h2>
             <p className="text-slate-500 max-w-md mx-auto text-base">
-              Sem taxas ocultas. Acesso após confirmação do pagamento. Plano anual com 1 dia de teste. Cancele quando quiser.
+              Motor de performance + dashboard + agente ZED. Sem taxas ocultas. Acesso após confirmação do pagamento. Cancele quando quiser.
             </p>
           </div>
         </BlurFade>

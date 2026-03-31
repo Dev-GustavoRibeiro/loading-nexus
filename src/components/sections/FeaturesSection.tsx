@@ -146,16 +146,16 @@ export function FeaturesSection() {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/8 border border-amber-500/20 text-amber-400 text-xs font-semibold mb-5 uppercase tracking-wider">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-              Recursos
+              Motor de performance
             </div>
             <h2 className="text-3xl sm:text-5xl font-black text-slate-100 mb-4">
-              Tudo o que o seu{" "}
+              A tecnologia que a{" "}
               <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-amber-200 bg-clip-text text-transparent">
-                PC precisa
+                IA conduz
               </span>
             </h2>
             <p className="text-slate-500 max-w-xl mx-auto">
-              Do gamer ao criador de conteúdo, do dev ao utilizador de ferramentas pesadas — recursos pensados para o Windows responder quando mais precisa.
+              O ZED não trabalha sozinho. Por baixo, um motor técnico sólido garante que cada recomendação tenha impacto real no seu Windows.
             </p>
           </div>
         </BlurFade>

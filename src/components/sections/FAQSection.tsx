@@ -8,6 +8,26 @@ import { SUPPORT_WHATSAPP_LABEL, SUPPORT_WHATSAPP_URL } from "@/lib/support"
 
 const faqs = [
   {
+    q: "O que o agente ZED realmente faz?",
+    a: "O ZED é o agente de IA integrado ao Nexus. Ele monitora sinais do sistema em tempo real (CPU, RAM, GPU, latência, processos ativos), identifica gargalos, explica o problema em linguagem simples e sugere a melhor ação para o seu caso. Ele não faz nada sozinho — toda recomendação passa pela sua aprovação.",
+  },
+  {
+    q: "A IA mexe sozinha no meu sistema?",
+    a: "Não. O ZED é um agente de diagnóstico e recomendação, não de ação autônoma. Ele identifica e explica os problemas, mas qualquer mudança no sistema requer sua confirmação explícita. Você sempre vê o que vai ser alterado antes de aplicar.",
+  },
+  {
+    q: "Posso revisar as recomendações antes de aplicar?",
+    a: "Sim, sempre. O ZED mostra a recomendação, explica o motivo e espera sua aprovação. Você pode aceitar, ignorar ou pedir mais detalhes. Nunca haverá alteração no sistema sem o seu consentimento.",
+  },
+  {
+    q: "O agente de IA serve só para jogos?",
+    a: "Não. O ZED adapta as recomendações ao seu perfil de uso — gamer, streamer, editor, dev ou home office. Para cada contexto, ele lê os sinais relevantes e sugere o melhor caminho. A IA é útil sempre que o Windows precisar responder melhor.",
+  },
+  {
+    q: "A IA aprende com o meu uso?",
+    a: "O ZED lê o estado atual do sistema e o seu perfil ativo para personalizar as recomendações. A inteligência está na interpretação dos sinais em tempo real, não em um modelo que se treina ao longo do tempo com seus dados.",
+  },
+  {
     q: "Como funciona a licença?",
     a: "A licença é vinculada à sua conta (e-mail) após a assinatura. Você pode usar o app em uma máquina Windows por vez e trocar de dispositivo pelo painel quando quiser. O plano anual inclui 1 dia de teste no primeiro ciclo (mensal e semestral não). O acesso ao software depende de plano ativo após o checkout.",
   },
@@ -26,10 +46,6 @@ const faqs = [
   {
     q: "Funciona no Mac ou no Linux?",
     a: "Por enquanto, não. O aplicativo desktop do Loading Nexus roda apenas no Microsoft Windows (idealmente Windows 10 ou 11). Você pode usar o site e gerir a conta em qualquer dispositivo com navegador; já o instalador e o painel local são só no Windows. Outras plataformas podem ser consideradas no futuro.",
-  },
-  {
-    q: "Serve só para jogos?",
-    a: "Não. Muita gente usa para ganhar FPS e estabilidade em jogos competitivos, mas o Loading Nexus também ajuda em multitarefa pesada, streaming (ex.: OBS), suites criativas, desenvolvimento e qualquer fluxo em que o Windows precise responder rápido e de forma previsível. Funciona no Windows moderno; jogos específicos beneficiam quando o gargalo é sistema ou configuração.",
   },
   {
     q: "Posso cancelar a qualquer momento?",
@@ -115,14 +131,14 @@ export function FAQSection() {
               PERGUNTAS FREQUENTES
             </div>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-100 mb-4">
-              Ainda tem{" "}
+              Perguntas sobre o{" "}
               <span className="bg-gradient-to-r from-amber-300 to-slate-300 bg-clip-text text-transparent">
-                dúvidas?
+                Nexus e o ZED
               </span>
             </h2>
             <p className="text-slate-500 text-sm">
-              Respondemos as principais perguntas. Se não encontrar o que procura,
-              fale connosco no WhatsApp.
+              Respondemos as principais dúvidas sobre o produto, o agente de IA e a assinatura.
+              Se não encontrar o que procura, fale connosco no WhatsApp.
             </p>
           </div>
         </BlurFade>

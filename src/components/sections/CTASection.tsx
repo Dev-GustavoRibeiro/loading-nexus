@@ -18,10 +18,10 @@ function CTAButtons() {
         duration="1.5s"
         onClick={() => open("signup")}
       >
-        Criar conta — A partir de R$27,90/mês
+        Testar agora — A partir de R$27,90/mês
       </PulsatingButton>
       <div className="text-xs text-slate-600 flex flex-col items-center gap-1">
-        <span>✓ Conta segura com e-mail</span>
+        <span>✓ Agente ZED incluído</span>
         <span>✓ Acesso em 3 minutos</span>
       </div>
     </div>
@@ -62,26 +62,26 @@ export function CTASection() {
                 className="mb-2"
               >
                 <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-950/40 border border-amber-600/35 text-amber-300 text-xs font-semibold mb-6">
-                  Comece hoje mesmo
+                  Agente ZED incluído — comece hoje
                 </span>
               </motion.div>
 
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-100 mb-4 leading-tight">
-                Mais fluidez no que{" "}
+                Seu PC com um{" "}
                 <br className="hidden sm:block" />
                 <SparklesText
                   className="text-3xl sm:text-5xl lg:text-6xl font-black bg-gradient-to-r from-amber-200 via-amber-400 to-slate-200 bg-clip-text text-transparent"
                   sparklesCount={6}
                   colors={{ first: "#d4af37", second: "#e2e8f0" }}
                 >
-                  você faz no PC
+                  copiloto de IA
                 </SparklesText>
               </h2>
 
               <p className="text-slate-500 text-base sm:text-lg mb-10 max-w-xl mx-auto">
-                Junte-se a mais de 500 utilizadores — jogos, trabalho e criação.
-                Acesso imediato. A partir de{" "}
-                <strong className="text-slate-200">R$27,90/mês</strong> no plano mensal; semestral e anual (com 1 dia de teste) na tabela de preços.
+                Diagnóstico inteligente, otimização em tempo real e o agente ZED orientando cada decisão.
+                Junte-se a mais de 500 utilizadores. A partir de{" "}
+                <strong className="text-slate-200">R$27,90/mês</strong> — agente de IA incluído em todos os planos.
               </p>
 
               <CTAButtons />

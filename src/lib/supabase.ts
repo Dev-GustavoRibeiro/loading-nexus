@@ -20,9 +20,19 @@ export function isSupabaseConfigured(): boolean {
  * O fragmento da sessão (`#...type=recovery`) cai na raiz; `RecoveryAuthRedirect` envia para `/auth/atualizar-senha`.
  * A **Site URL** no painel Supabase deve ser essa mesma origem (com/sem www igual ao site).
  */
+/** Garante URL absoluta: sem `https://`, o GoTrue pode tratar `host.tld` como path em `*.supabase.co`. */
+function normalizePublicSiteUrl(raw: string): string {
+  const t = raw.trim()
+  if (!t) return t
+  if (/^https?:\/\//i.test(t)) return t
+  // host[:porta] sem path — prefixar https (evita redirect relativo no servidor Supabase)
+  if (/^[\w.-]+(?::\d+)?$/i.test(t)) return `https://${t}`
+  return t
+}
+
 export function getPasswordResetRedirectUrl(): string {
   if (typeof window === "undefined") return ""
-  const raw = (process.env.NEXT_PUBLIC_SITE_URL ?? "").trim()
+  const raw = normalizePublicSiteUrl(process.env.NEXT_PUBLIC_SITE_URL ?? "")
   const fallback = window.location.origin
   if (!raw) {
     try {
