@@ -5,7 +5,6 @@ import { motion } from "motion/react"
 import { Check, Zap, CalendarRange, Sparkles } from "lucide-react"
 import { BlurFade } from "@/components/ui/blur-fade"
 import { BorderBeam } from "@/components/ui/border-beam"
-import { SparklesText } from "@/components/ui/sparkles-text"
 import { cn } from "@/lib/utils"
 import { useAuthModal } from "@/components/AuthModalProvider"
 import { STRIPE_CHECKOUT_LINKS } from "@/lib/stripe-links"
@@ -171,19 +170,14 @@ export function PricingSection() {
                     </p>
                     <div className="flex items-end gap-1 leading-none flex-wrap">
                       <span className="text-base text-slate-500 mb-1">R$</span>
-                      {plan.highlighted ? (
-                        <SparklesText
-                          className="text-5xl font-black text-white"
-                          sparklesCount={5}
-                          colors={{ first: "#d4af37", second: "#fff" }}
-                        >
-                          {plan.price.toFixed(2).replace(".", ",")}
-                        </SparklesText>
-                      ) : (
-                        <span className="text-5xl font-black text-slate-100">
-                          {plan.price.toFixed(2).replace(".", ",")}
-                        </span>
-                      )}
+                      <span
+                        className={cn(
+                          "text-5xl font-black",
+                          plan.highlighted ? "text-white" : "text-slate-100"
+                        )}
+                      >
+                        {plan.price.toFixed(2).replace(".", ",")}
+                      </span>
                       <span className="text-slate-500 text-sm mb-1">{plan.period}</span>
                     </div>
                     <p className="text-xs text-slate-600 mt-2">{plan.billing}</p>

@@ -79,7 +79,7 @@ export function CTASection() {
               </h2>
 
               <p className="text-slate-500 text-base sm:text-lg mb-10 max-w-xl mx-auto">
-                Junte-se a mais de 10.000 utilizadores — jogos, trabalho e criação.
+                Junte-se a mais de 500 utilizadores — jogos, trabalho e criação.
                 Acesso imediato. A partir de{" "}
                 <strong className="text-slate-200">R$27,90/mês</strong> no plano mensal; semestral e anual (com 1 dia de teste) na tabela de preços.
               </p>

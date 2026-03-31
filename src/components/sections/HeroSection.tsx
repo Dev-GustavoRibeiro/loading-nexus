@@ -4,7 +4,6 @@ import { useRef } from "react"
 import { motion, useScroll, useTransform } from "motion/react"
 import { Zap, Shield, Monitor, TrendingUp } from "lucide-react"
 import Image from "next/image"
-import { SparklesText } from "@/components/ui/sparkles-text"
 import { WordRotate } from "@/components/ui/word-rotate"
 import { BorderBeam } from "@/components/ui/border-beam"
 import { DarkVeilBackground } from "@/components/DarkVeilBackground"
@@ -13,7 +12,7 @@ import { useAuthModal } from "@/components/AuthModalProvider"
 const STATS = [
   { value: "+40%", label: "Ganho típico*", icon: TrendingUp },
   { value: "<1ms", label: "Resposta", icon: Zap },
-  { value: "10k+", label: "Utilizadores", icon: Monitor },
+  { value: "500+", label: "Utilizadores", icon: Monitor },
   { value: "24/7", label: "Suporte", icon: Shield },
 ]
 
@@ -60,6 +59,8 @@ export function HeroSection() {
             backgroundImage:
               "linear-gradient(rgba(212,175,55,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.15) 1px, transparent 1px)",
             backgroundSize: "64px 64px",
+            /* Evita linha horizontal exactamente em y=0 (visível através da navbar transparente). */
+            backgroundPosition: "0 4px",
             maskImage: "radial-gradient(ellipse 80% 70% at 50% 30%, black 0%, transparent 100%)",
           }}
         />
@@ -97,9 +98,6 @@ export function HeroSection() {
         />
       </motion.div>
 
-      {/* Accent top line */}
-      <div className="absolute top-[62px] left-0 right-0 z-[3] h-px bg-gradient-to-r from-transparent via-amber-500/20 to-transparent pointer-events-none" />
-
       {/* ── Hero copy ──────────────────────────────────────────────────── */}
       <div className="relative z-10">
         <div className="min-h-[min(86vh,800px)] flex flex-col items-center justify-center pt-24 pb-16 px-4 sm:px-6">
@@ -132,14 +130,8 @@ export function HeroSection() {
                 <span className="block text-4xl sm:text-6xl lg:text-7xl text-slate-200 mb-2">
                   O DESEMPENHO QUE
                 </span>
-                <span className="block text-5xl sm:text-7xl lg:text-[5.5rem]">
-                  <SparklesText
-                    className="font-black bg-gradient-to-br from-amber-200 via-amber-400 to-amber-600 bg-clip-text text-transparent"
-                    sparklesCount={10}
-                    colors={{ first: "#d4af37", second: "#fff8e0" }}
-                  >
-                    O SEU PC MERECE
-                  </SparklesText>
+                <span className="block text-5xl sm:text-7xl lg:text-[5.5rem] bg-gradient-to-br from-amber-200 via-amber-400 to-amber-600 bg-clip-text text-transparent">
+                  O SEU PC MERECE
                 </span>
               </h1>
             </motion.div>

@@ -41,15 +41,19 @@ export function Navbar() {
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-[62px]">
+        <div className="flex items-center justify-between min-h-[80px] py-2 sm:min-h-[88px] sm:py-2.5">
 
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2.5 group shrink-0">
-            <div className="w-9 h-9 relative shrink-0">
-              <BrandLogo width={36} height={36} className="transition-transform duration-300 group-hover:scale-110" />
+          <a href="#" className="flex items-center gap-3 sm:gap-4 group shrink-0">
+            <div className="relative size-16 shrink-0 sm:size-[5.25rem]">
+              <BrandLogo
+                width={84}
+                height={84}
+                className="size-full object-contain transition-transform duration-300 group-hover:scale-105"
+              />
             </div>
             <span
-              className="font-black text-lg tracking-tight bg-clip-text text-transparent"
+              className="font-black text-xl sm:text-2xl tracking-tight bg-clip-text text-transparent"
               style={{
                 backgroundImage:
                   "linear-gradient(90deg, #4a7ab5 0%, #c4cbd4 35%, #d4af37 65%, #f0d875 100%)",

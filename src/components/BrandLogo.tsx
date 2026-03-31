@@ -5,9 +5,11 @@ type Props = {
   className?: string
   width?: number
   height?: number
+  /** No header, `screen` pode esbatuar o PNG em fundos escuros. */
+  blendScreen?: boolean
 }
 
-export function BrandLogo({ className, width = 40, height = 40 }: Props) {
+export function BrandLogo({ className, width = 40, height = 40, blendScreen = true }: Props) {
   return (
     <Image
       src="/logo.png"
@@ -15,7 +17,7 @@ export function BrandLogo({ className, width = 40, height = 40 }: Props) {
       width={width}
       height={height}
       className={cn("object-contain", className)}
-      style={{ mixBlendMode: "screen" }}
+      style={blendScreen ? { mixBlendMode: "screen" } : undefined}
       priority
     />
   )

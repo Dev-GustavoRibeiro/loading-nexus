@@ -2,8 +2,7 @@
 
 import { useCallback, useEffect, useState, useSyncExternalStore, type ReactNode } from "react"
 import { createPortal } from "react-dom"
-import Link from "next/link"
-import { X } from "lucide-react"
+import { X, Mail } from "lucide-react"
 import { BrandLogo } from "@/components/BrandLogo"
 import { SUPPORT_WHATSAPP_LABEL, SUPPORT_WHATSAPP_URL } from "@/lib/support"
 import { cn } from "@/lib/utils"
@@ -300,6 +299,49 @@ const LEGAL_LINKS: { label: string; id: FooterModalId }[] = [
   { label: "LGPD", id: "lgpd" },
 ]
 
+function InstagramIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
+    </svg>
+  )
+}
+
+function WhatsAppIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  )
+}
+
+const CONTACT_ITEMS = [
+  {
+    icon: InstagramIcon,
+    label: "@loading.nexus",
+    href: "https://instagram.com/loading.nexus",
+    color: "text-pink-400 group-hover:text-pink-300",
+    bg: "bg-pink-500/10 group-hover:bg-pink-500/20 border-pink-500/20",
+  },
+  {
+    icon: Mail,
+    label: "nexus@loading.dev.br",
+    href: "mailto:nexus@loading.dev.br",
+    color: "text-amber-400 group-hover:text-amber-300",
+    bg: "bg-amber-500/10 group-hover:bg-amber-500/20 border-amber-500/20",
+  },
+  {
+    icon: WhatsAppIcon,
+    label: SUPPORT_WHATSAPP_LABEL,
+    href: SUPPORT_WHATSAPP_URL,
+    color: "text-emerald-400 group-hover:text-emerald-300",
+    bg: "bg-emerald-500/10 group-hover:bg-emerald-500/20 border-emerald-500/20",
+    external: true,
+  },
+]
+
 export function Footer() {
   const [active, setActive] = useState<FooterModalId | null>(null)
 
@@ -307,31 +349,143 @@ export function Footer() {
 
   return (
     <>
-      <footer className="relative border-t border-slate-800/60 py-12 px-4 sm:px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-10">
-            <div className="col-span-2 sm:col-span-1">
-              <Link href="/" className="flex items-center gap-3 mb-4">
-                <BrandLogo width={32} height={32} />
-                <span className="text-slate-100 font-bold text-base">
-                  Loading<span className="text-amber-400">Nexus</span>
+      <footer className="relative overflow-hidden bg-[#040810]">
+
+        {/* ── Dot-grid texture ─────────────────────────────────────── */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.025]"
+          style={{
+            backgroundImage: "radial-gradient(circle, #94a3b8 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
+          }}
+        />
+
+        {/* ── Ambient glows ────────────────────────────────────────── */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 50% at 15% 110%, rgba(212,175,55,0.08) 0%, transparent 60%), " +
+              "radial-gradient(ellipse 60% 40% at 85% 110%, rgba(30,58,150,0.10) 0%, transparent 60%)",
+          }}
+        />
+
+        {/* ── CTA strip ────────────────────────────────────────────── */}
+        <div className="relative border-b border-white/[0.05]">
+          {/* Glow line top */}
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-amber-500/50 to-transparent" />
+
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20 flex flex-col items-center text-center gap-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-amber-500/20 bg-amber-500/8 text-[11px] font-semibold text-amber-400 tracking-widest uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+              Para Windows 10 &amp; 11
+            </div>
+
+            <h2
+              className="text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.05] tracking-tighter max-w-2xl"
+              style={{
+                background: "linear-gradient(135deg, #f8fafc 0%, #e2e8f0 40%, #d4af37 75%, #fbbf24 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              Seu PC. Seu potencial.
+            </h2>
+
+            <p className="text-sm sm:text-base text-slate-500 max-w-sm leading-relaxed">
+              Otimização real, painel de métricas e ajustes que o Windows não faz sozinho.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
+              <a
+                href="#pricing"
+                onClick={(e) => {
+                  e.preventDefault()
+                  document.querySelector("#pricing")?.scrollIntoView({ behavior: "smooth" })
+                }}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-400 text-slate-950 text-sm font-bold shadow-lg shadow-amber-500/20 hover:shadow-amber-500/35 hover:from-amber-400 hover:to-amber-300 transition-all duration-200"
+              >
+                Ver planos
+                <span aria-hidden="true">→</span>
+              </a>
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://instagram.com/loading.nexus"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram @loading.nexus"
+                  className="group w-10 h-10 rounded-xl border border-pink-500/20 bg-pink-500/8 hover:bg-pink-500/18 hover:border-pink-500/40 flex items-center justify-center transition-all duration-200"
+                >
+                  <InstagramIcon className="w-4 h-4 text-pink-400 group-hover:text-pink-300 transition-colors" />
+                </a>
+                <a
+                  href="mailto:nexus@loading.dev.br"
+                  aria-label="E-mail nexus@loading.dev.br"
+                  className="group w-10 h-10 rounded-xl border border-amber-500/20 bg-amber-500/8 hover:bg-amber-500/18 hover:border-amber-500/40 flex items-center justify-center transition-all duration-200"
+                >
+                  <Mail className="w-4 h-4 text-amber-400 group-hover:text-amber-300 transition-colors" />
+                </a>
+                <a
+                  href={SUPPORT_WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Suporte via WhatsApp"
+                  className="group w-10 h-10 rounded-xl border border-emerald-500/20 bg-emerald-500/8 hover:bg-emerald-500/18 hover:border-emerald-500/40 flex items-center justify-center transition-all duration-200"
+                >
+                  <WhatsAppIcon className="w-4 h-4 text-emerald-400 group-hover:text-emerald-300 transition-colors" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ── Main grid ────────────────────────────────────────────── */}
+        <div className="relative py-12 px-4 sm:px-6 border-b border-white/[0.04]">
+          <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-10 lg:gap-14">
+
+            {/* Brand column */}
+            <div className="col-span-2 sm:col-span-4 lg:col-span-2 space-y-6">
+              <a
+                href="#"
+                onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }) }}
+                className="flex items-center gap-3 sm:gap-4 group w-fit shrink-0"
+              >
+                <div className="relative size-16 shrink-0 sm:size-[5.25rem]">
+                  <BrandLogo
+                    width={84}
+                    height={84}
+                    className="size-full object-contain transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
+                <span
+                  className="font-black text-xl sm:text-2xl tracking-tight bg-clip-text text-transparent"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(90deg, #4a7ab5 0%, #c4cbd4 35%, #d4af37 65%, #f0d875 100%)",
+                  }}
+                >
+                  Loading Nexus
                 </span>
-              </Link>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Performance no Windows para quem exige resposta — jogos, trabalho e criação.
+              </a>
+
+              <p className="text-[13px] text-slate-500 leading-relaxed max-w-[260px]">
+                Do gamer ao criador de conteúdo — ajustes transparentes, painel real. Sem truques opacos.
               </p>
             </div>
 
+            {/* Produto */}
             <div>
-              <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-3">Produto</h4>
-              <ul className="space-y-2">
+              <h4 className="text-[10px] font-bold text-slate-600 uppercase tracking-[0.14em] mb-4">Produto</h4>
+              <ul className="space-y-3">
                 {PRODUTO_LINKS.map(({ label, id }) => (
                   <li key={id}>
                     <button
                       type="button"
                       onClick={() => setActive(id)}
-                      className="text-xs text-slate-600 hover:text-slate-300 transition-colors text-left"
+                      className="text-[12px] text-slate-500 hover:text-slate-200 transition-colors text-left group flex items-center gap-1.5"
                     >
+                      <span className="w-0 group-hover:w-2 overflow-hidden transition-all duration-200 text-amber-500 shrink-0">›</span>
                       {label}
                     </button>
                   </li>
@@ -339,29 +493,56 @@ export function Footer() {
               </ul>
             </div>
 
+            {/* Suporte */}
             <div>
-              <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-3">Suporte</h4>
-              <p className="text-xs text-slate-600 mb-2 leading-relaxed">Atendimento apenas pelo WhatsApp.</p>
-              <a
-                href={SUPPORT_WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-500/90 hover:text-emerald-400 transition-colors"
-              >
-                {SUPPORT_WHATSAPP_LABEL}
-              </a>
+              <h4 className="text-[10px] font-bold text-slate-600 uppercase tracking-[0.14em] mb-4">Suporte</h4>
+              <ul className="space-y-3">
+                <li>
+                  <a
+                    href={SUPPORT_WHATSAPP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[12px] text-emerald-500/80 hover:text-emerald-400 transition-colors font-medium group flex items-center gap-1.5"
+                  >
+                    <span className="w-0 group-hover:w-2 overflow-hidden transition-all duration-200 text-emerald-400 shrink-0">›</span>
+                    WhatsApp
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="mailto:nexus@loading.dev.br"
+                    className="text-[12px] text-amber-500/70 hover:text-amber-400 transition-colors font-medium group flex items-center gap-1.5"
+                  >
+                    <span className="w-0 group-hover:w-2 overflow-hidden transition-all duration-200 text-amber-400 shrink-0">›</span>
+                    E-mail
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://instagram.com/loading.nexus"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[12px] text-pink-500/70 hover:text-pink-400 transition-colors font-medium group flex items-center gap-1.5"
+                  >
+                    <span className="w-0 group-hover:w-2 overflow-hidden transition-all duration-200 text-pink-400 shrink-0">›</span>
+                    Instagram
+                  </a>
+                </li>
+              </ul>
             </div>
 
+            {/* Legal */}
             <div>
-              <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-3">Legal</h4>
-              <ul className="space-y-2">
+              <h4 className="text-[10px] font-bold text-slate-600 uppercase tracking-[0.14em] mb-4">Legal</h4>
+              <ul className="space-y-3">
                 {LEGAL_LINKS.map(({ label, id }) => (
                   <li key={id}>
                     <button
                       type="button"
                       onClick={() => setActive(id)}
-                      className="text-xs text-slate-600 hover:text-slate-300 transition-colors text-left"
+                      className="text-[12px] text-slate-500 hover:text-slate-200 transition-colors text-left group flex items-center gap-1.5"
                     >
+                      <span className="w-0 group-hover:w-2 overflow-hidden transition-all duration-200 text-amber-500 shrink-0">›</span>
                       {label}
                     </button>
                   </li>
@@ -369,19 +550,44 @@ export function Footer() {
               </ul>
             </div>
           </div>
+        </div>
 
-          <div className="h-px bg-white/[0.05] mb-6" />
-
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-slate-700">© 2026 Loading Nexus. Todos os direitos reservados.</p>
+        {/* ── Bottom bar ───────────────────────────────────────────── */}
+        <div className="relative py-5 px-4 sm:px-6">
+          <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p className="text-[11px] text-slate-700">
+              © 2026 Loading Nexus — Todos os direitos reservados.
+            </p>
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-1.5 text-xs text-slate-700">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                App desktop: Windows 10 ou 11 (por agora)
+              <div className="flex items-center gap-1.5 text-[11px] text-slate-700">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+                Windows 10 / 11
+              </div>
+              <div className="h-3 w-px bg-slate-800" />
+              <span className="text-[11px] text-slate-700">v0.1.5</span>
+              <div className="h-3 w-px bg-slate-800" />
+              <div className="flex items-center gap-2">
+                <a
+                  href="https://instagram.com/loading.nexus"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="text-slate-700 hover:text-pink-400 transition-colors"
+                >
+                  <InstagramIcon className="w-3.5 h-3.5" />
+                </a>
+                <a
+                  href="mailto:nexus@loading.dev.br"
+                  aria-label="E-mail"
+                  className="text-slate-700 hover:text-amber-400 transition-colors"
+                >
+                  <Mail className="w-3.5 h-3.5" />
+                </a>
               </div>
             </div>
           </div>
         </div>
+
       </footer>
 
       {active ? (
