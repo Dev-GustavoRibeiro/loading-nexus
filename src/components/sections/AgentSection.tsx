@@ -2,7 +2,6 @@
 
 import { motion } from "motion/react"
 import Image from "next/image"
-import zedChatScreenshot from "@/assets/chat-zed.png"
 import { Brain, CheckCircle2, Zap, Target, MessageSquare, Lightbulb, History } from "lucide-react"
 import { BlurFade } from "@/components/ui/blur-fade"
 import { BorderBeam } from "@/components/ui/border-beam"
@@ -70,12 +69,13 @@ function ZedChatPreview() {
       {/* Altura natural da imagem — sem min-height nem flex-1 */}
       <div className="relative z-10 w-full overflow-hidden rounded-xl border border-slate-800/60 bg-[#0a0f18] leading-none">
         <Image
-          src={zedChatScreenshot}
+          src="/chat-zed.png"
           alt="Interface do ZED AI no Loading Nexus: chat com o agente, ações rápidas e campo de mensagem."
+          width={1024}
+          height={1024}
           className="block h-auto w-full align-top"
           sizes="(max-width: 1024px) 100vw, 50vw"
           priority
-          placeholder="blur"
         />
       </div>
     </div>
