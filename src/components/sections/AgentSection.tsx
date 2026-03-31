@@ -55,10 +55,10 @@ const AI_CAPABILITIES = [
 
 function ZedChatPreview() {
   return (
-    <div className="relative flex h-full min-h-0 flex-col rounded-2xl bg-[#080f1e] border border-slate-800/70 overflow-hidden p-4 sm:p-5">
+    <div className="relative w-full max-w-full rounded-2xl bg-[#080f1e] border border-slate-800/70 overflow-hidden p-3 sm:p-4">
       <BorderBeam size={160} duration={6} colorFrom="#1e3a5f" colorTo="#d4af37" />
 
-      <div className="relative z-10 mb-3 shrink-0">
+      <div className="relative z-10 mb-2 shrink-0">
         <p className="text-[11px] font-semibold uppercase tracking-wider text-amber-500/90">
           Interface no app
         </p>
@@ -67,11 +67,12 @@ function ZedChatPreview() {
         </p>
       </div>
 
-      <div className="relative z-10 flex-1 min-h-[280px] sm:min-h-[320px] rounded-xl border border-slate-800/60 bg-[#0a0f18] overflow-hidden">
+      {/* Altura natural da imagem — sem min-height nem flex-1 */}
+      <div className="relative z-10 w-full overflow-hidden rounded-xl border border-slate-800/60 bg-[#0a0f18] leading-none">
         <Image
           src={zedChatScreenshot}
           alt="Interface do ZED AI no Loading Nexus: chat com o agente, ações rápidas e campo de mensagem."
-          className="h-full w-full object-contain object-top"
+          className="block h-auto w-full align-top"
           sizes="(max-width: 1024px) 100vw, 50vw"
           priority
           placeholder="blur"
@@ -114,14 +115,17 @@ export function AgentSection() {
           </div>
         </BlurFade>
 
-        {/* Chat preview + capabilities — linha com mesma altura em lg */}
+        {/* Chat preview + capabilities — em lg, altura da coluna = altura do chat; 6 cards preenchem */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12 lg:items-stretch">
-          <BlurFade inView delay={0.1} className="min-h-0 flex flex-col h-full">
+          <BlurFade
+            inView
+            delay={0.1}
+            className="flex h-full min-h-0 w-full flex-col items-start"
+          >
             <ZedChatPreview />
           </BlurFade>
 
-          {/* Capability cards: mesma altura em cada linha + grid auto-rows */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 auto-rows-fr min-h-0">
+          <div className="grid min-h-0 grid-cols-1 gap-3 sm:grid-cols-2 lg:min-h-0 lg:h-full lg:grid-cols-2 lg:[grid-template-rows:repeat(3,minmax(0,1fr))]">
             {AI_CAPABILITIES.map((cap, i) => (
               <BlurFade
                 key={cap.title}
@@ -133,7 +137,8 @@ export function AgentSection() {
                   whileHover={{ y: -3 }}
                   transition={{ type: "spring", stiffness: 320, damping: 22 }}
                   className={cn(
-                    "group relative flex h-full min-h-[12.75rem] flex-col rounded-xl bg-[#080f1e]/80 border border-slate-800/60 hover:border-slate-700/80 p-4 transition-all duration-300"
+                    "group relative flex h-full min-h-0 flex-col rounded-xl bg-[#080f1e]/80 border border-slate-800/60 hover:border-slate-700/80 p-4 transition-all duration-300",
+                    "min-h-[12.75rem] lg:min-h-0"
                   )}
                 >
                   <div className={cn("w-9 h-9 shrink-0 rounded-lg flex items-center justify-center mb-3 border", cap.glow)}>
