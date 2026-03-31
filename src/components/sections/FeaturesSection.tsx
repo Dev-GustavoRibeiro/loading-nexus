@@ -77,18 +77,34 @@ const ACCENT_COLORS: Record<string, { icon: string; glow: string; beam: string }
   pink:  { icon: "text-pink-400",  glow: "bg-pink-500/10 border-pink-500/20",   beam: "#ec4899" },
 }
 
-function FeatureCard({ feature, index }: { feature: typeof features[0]; index: number }) {
+function FeatureCard({
+  feature,
+  index,
+  className,
+  rootClassName,
+}: {
+  feature: typeof features[0]
+  index: number
+  className?: string
+  /** Para esticar dentro de grelha/flex (ex.: flex-1 min-h-0) */
+  rootClassName?: string
+}) {
   const color = ACCENT_COLORS[feature.accent]
   return (
-    <BlurFade delay={0.1 + index * 0.07} inView>
+    <BlurFade
+      delay={0.1 + index * 0.07}
+      inView
+      className={cn("h-full min-h-0 flex flex-col", rootClassName)}
+    >
       <motion.div
         whileHover={{ y: -4 }}
         transition={{ type: "spring", stiffness: 320, damping: 22 }}
         className={cn(
-          "group relative h-full rounded-2xl p-6 overflow-hidden border transition-all duration-300",
+          "group relative min-h-0 flex flex-1 flex-col rounded-2xl p-6 overflow-hidden border transition-all duration-300",
           "bg-gradient-to-br",
           feature.gradient,
-          feature.border
+          feature.border,
+          className
         )}
       >
         <BorderBeam
@@ -105,7 +121,7 @@ function FeatureCard({ feature, index }: { feature: typeof features[0]; index: n
         </div>
 
         <h3 className="text-base font-bold text-slate-100 mb-2 leading-snug">{feature.title}</h3>
-        <p className="text-sm text-slate-500 leading-relaxed">{feature.description}</p>
+        <p className="text-sm text-slate-500 leading-relaxed flex-1 min-h-0">{feature.description}</p>
 
         {/* Corner accent */}
         <div className="absolute top-0 right-0 w-24 h-24 opacity-[0.04] pointer-events-none">
@@ -144,14 +160,32 @@ export function FeaturesSection() {
           </div>
         </BlurFade>
 
-        {/* Bento grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div className="lg:col-span-2"><FeatureCard feature={features[0]} index={0} /></div>
-          <div><FeatureCard feature={features[1]} index={1} /></div>
-          <div><FeatureCard feature={features[2]} index={2} /></div>
-          <div><FeatureCard feature={features[3]} index={3} /></div>
-          <div><FeatureCard feature={features[4]} index={4} /></div>
-          <div className="sm:col-span-2 lg:col-span-3"><FeatureCard feature={features[5]} index={5} /></div>
+        {/* Bento: linha de cima = 2 cards à mesma altura; linha do meio = 3 cards à mesma altura */}
+        <div className="flex flex-col gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:items-stretch">
+            <div className="lg:col-span-2 min-h-0 h-full flex flex-col">
+              <FeatureCard feature={features[0]} index={0} rootClassName="min-h-0 flex-1" className="w-full" />
+            </div>
+            <div className="min-h-0 h-full flex flex-col">
+              <FeatureCard feature={features[1]} index={1} rootClassName="min-h-0 flex-1" className="w-full" />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:items-stretch lg:items-stretch">
+            <div className="min-h-0 h-full flex flex-col sm:col-span-1">
+              <FeatureCard feature={features[2]} index={2} rootClassName="min-h-0 flex-1" className="w-full" />
+            </div>
+            <div className="min-h-0 h-full flex flex-col">
+              <FeatureCard feature={features[3]} index={3} rootClassName="min-h-0 flex-1" className="w-full" />
+            </div>
+            <div className="min-h-0 h-full flex flex-col sm:col-span-2 lg:col-span-1">
+              <FeatureCard feature={features[4]} index={4} rootClassName="min-h-0 flex-1" className="w-full" />
+            </div>
+          </div>
+
+          <div className="min-h-0">
+            <FeatureCard feature={features[5]} index={5} />
+          </div>
         </div>
       </div>
     </section>

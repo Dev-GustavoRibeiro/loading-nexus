@@ -7,7 +7,7 @@ import { Marquee } from "@/components/ui/marquee"
 import { cn } from "@/lib/utils"
 
 const stats = [
-  { value: 10482, suffix: "+", label: "Utilizadores ativos", desc: "e a crescer todos os dias" },
+  { value: 500, suffix: "+", label: "Utilizadores ativos", desc: "e a crescer todos os dias" },
   { value: 99, suffix: ".8%", label: "Uptime", desc: "disponibilidade garantida" },
   { value: 47, suffix: " FPS", label: "Ganho médio*", desc: "em jogos, hardware típico" },
   { value: 3, suffix: " min", label: "Setup completo", desc: "do zero a funcionar" },

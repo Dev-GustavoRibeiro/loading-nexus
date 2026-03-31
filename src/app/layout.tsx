@@ -4,6 +4,7 @@ import "./globals.css"
 import { SessionProvider } from "@/components/SessionProvider"
 import { AuthModalProvider } from "@/components/AuthModalProvider"
 import { AuthModals } from "@/components/AuthModals"
+import { RecoveryAuthRedirect } from "@/components/RecoveryAuthRedirect"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -58,6 +59,7 @@ export default function RootLayout({
     >
       <body className="relative min-h-full flex flex-col bg-[#050a14] text-slate-100">
         <SessionProvider>
+          <RecoveryAuthRedirect />
           <AuthModalProvider>
             {children}
             <AuthModals />

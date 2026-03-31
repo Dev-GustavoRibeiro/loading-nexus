@@ -13,11 +13,29 @@ export function isSupabaseConfigured(): boolean {
   return Boolean(supabaseUrl && supabaseAnonKey)
 }
 
-/** Redirect após o link do e-mail de recuperação (só no browser). Inclua esta URL em Supabase → Auth → Redirect URLs. */
+/**
+ * `redirect_to` no e-mail de recuperação.
+ * Usar só a **origem** (ex. `https://seudominio.com`) evita o erro JSON em `*.supabase.co`:
+ * `{"error":"requested path is invalid"}` quando `/auth/atualizar-senha` não está em Redirect URLs.
+ * O fragmento da sessão (`#...type=recovery`) cai na raiz; `RecoveryAuthRedirect` envia para `/auth/atualizar-senha`.
+ * A **Site URL** no painel Supabase deve ser essa mesma origem (com/sem www igual ao site).
+ */
 export function getPasswordResetRedirectUrl(): string {
   if (typeof window === "undefined") return ""
-  const base = (process.env.NEXT_PUBLIC_SITE_URL ?? "").replace(/\/$/, "") || window.location.origin
-  return `${base}/auth/atualizar-senha`
+  const raw = (process.env.NEXT_PUBLIC_SITE_URL ?? "").trim()
+  const fallback = window.location.origin
+  if (!raw) {
+    try {
+      return new URL(fallback).origin
+    } catch {
+      return fallback
+    }
+  }
+  try {
+    return new URL(raw).origin
+  } catch {
+    return fallback
+  }
 }
 
 export type ProfileRow = {

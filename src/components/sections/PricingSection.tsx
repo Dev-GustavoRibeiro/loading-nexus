@@ -114,16 +114,16 @@ export function PricingSection() {
           </div>
         </BlurFade>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:items-stretch md:auto-rows-fr">
           {plans.map((plan, i) => (
-            <BlurFade key={plan.id} delay={0.1 + i * 0.1} inView>
+            <BlurFade key={plan.id} delay={0.1 + i * 0.1} inView className="h-full min-h-0">
               <motion.div
                 onHoverStart={() => setHovered(plan.id)}
                 onHoverEnd={() => setHovered(null)}
                 whileHover={{ y: plan.highlighted ? -6 : -4 }}
                 transition={{ type: "spring", stiffness: 300, damping: 22 }}
                 className={cn(
-                  "relative rounded-2xl flex flex-col overflow-hidden transition-shadow duration-300",
+                  "relative h-full min-h-0 rounded-2xl flex flex-col overflow-hidden transition-shadow duration-300",
                   plan.highlighted
                     ? "bg-gradient-to-b from-[#0d1e3a] to-[#091629] border border-amber-500/40 shadow-[0_0_48px_rgba(212,175,55,0.12)]"
                     : "bg-[#0c1528]/80 border border-slate-800/70 hover:border-slate-700/80",
